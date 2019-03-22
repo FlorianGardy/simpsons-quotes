@@ -6,12 +6,27 @@ import Quote from "./Quote";
 import Lamp from "./Lamp";
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      "working": true,
+      logoSpeed: "App-logo"
+    };
+  }
+
+  handleClick = () => {
+    this.setState({ "working": !this.state.working });
+    this.state.working === true ? this.setState({ logoSpeed: "App-logo" }) : this.setState({ logoSpeed: "App-logo-speed" })
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className={this.state.logoSpeed} alt="logo" />
           <h1 className="App-title">Simpsons Quotes</h1>
+          <button onClick={this.handleClick}>Speed button</button>
         </header>
         <Lamp />
         <Lamp />
